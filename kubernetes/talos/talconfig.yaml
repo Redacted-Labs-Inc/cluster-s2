@@ -165,7 +165,7 @@ controlPlane:
     # Cluster configuration
     - |-
       cluster:
-        allowSchedulingOnMasters: false
+        allowSchedulingOnMasters: true
         controllerManager:
           extraArgs:
             bind-address: 0.0.0.0
