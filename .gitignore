@@ -8,6 +8,7 @@ kubeconfig
 *.agekey
 *.pub
 *.key
+**/*.tmp.sops.yaml
 # Private
 .private
 .bin
