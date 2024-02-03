@@ -21,7 +21,7 @@ cniConfig:
 nodes:
   - hostname: "k8smaster-s2-01"
     ipAddress: "192.168.51.221"
-    installDisk: "/dev/sda1"
+    installDisk: "/dev/sda"
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -36,7 +36,7 @@ nodes:
           ip: "192.168.51.220"
   - hostname: "k8smaster-s2-02"
     ipAddress: "192.168.51.222"
-    installDisk: "/dev/sda1"
+    installDisk: "/dev/sda"
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -51,7 +51,7 @@ nodes:
           ip: "192.168.51.220"
   - hostname: "k8smaster-s2-03"
     ipAddress: "192.168.51.223"
-    installDisk: "/dev/sda1"
+    installDisk: "/dev/sda"
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -66,7 +66,7 @@ nodes:
           ip: "192.168.51.220"
   - hostname: "k8sworker-s2-01"
     ipAddress: "192.168.51.224"
-    installDisk: "/dev/sda1"
+    installDisk: "/dev/sda"
     controlPlane: false
     networkInterfaces:
       - interface: eth0
