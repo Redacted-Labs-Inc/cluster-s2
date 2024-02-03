@@ -23,7 +23,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    providerRegex: ^(k8smaster-s2-01|k8smaster-s2-02|k8smaster-s2-03|k8sworker-s2-01)$
+    providerRegex: ^(k8smaster-s2-01|k8smaster-s2-02|k8smaster-s2-03|k8sworker-s2-01|k8sworker-s2-02|k8sworker-s2-03)$
     bypassDnsResolution: true
     metrics:
       enable: true

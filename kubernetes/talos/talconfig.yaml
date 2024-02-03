@@ -77,6 +77,32 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.51.1"
+  - hostname: "k8sworker-s2-02"
+    ipAddress: "192.168.51.225"
+    installDisk: "/dev/sda"
+    controlPlane: false
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - "192.168.51.225/24"
+        mtu: 1500
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.51.1"
+  - hostname: "k8sworker-s2-03"
+    ipAddress: "192.168.51.226"
+    installDisk: "/dev/sda"
+    controlPlane: false
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - "192.168.51.226/24"
+        mtu: 1500
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.51.1"
 
 controlPlane:
   schematic:

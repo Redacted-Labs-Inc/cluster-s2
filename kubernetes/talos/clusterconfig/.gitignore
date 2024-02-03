@@ -3,3 +3,5 @@ home-kubernetes-k8smaster-s2-02.yaml
 home-kubernetes-k8smaster-s2-03.yaml
 home-kubernetes-k8sworker-s2-01.yaml
 talosconfig
+home-kubernetes-k8sworker-s2-02.yaml
+home-kubernetes-k8sworker-s2-03.yaml
