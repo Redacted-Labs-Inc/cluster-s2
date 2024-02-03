@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.6.3
+talosVersion: v1.6.4
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.29.1
 
@@ -67,7 +67,7 @@ nodes:
   - hostname: "k8sworker-s2-01"
     ipAddress: "192.168.51.224"
     installDisk: "/dev/sda1"
-    controlPlane: true
+    controlPlane: false
     networkInterfaces:
       - interface: eth0
         dhcp: false
@@ -77,8 +77,6 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.51.1"
-        vip:
-          ip: "192.168.51.220"
 
 controlPlane:
   schematic:
@@ -167,7 +165,7 @@ controlPlane:
     # Cluster configuration
     - |-
       cluster:
-        allowSchedulingOnMasters: true
+        allowSchedulingOnMasters: false
         controllerManager:
           extraArgs:
             bind-address: 0.0.0.0
@@ -215,3 +213,22 @@ controlPlane:
                 - rshared
                 - rw
 
+worker:
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/intel-ucode
+          - siderolabs/i915-ucode
+  patches:
+    - *containerdPatch
+    - *disableSearchDomainPatch
+    - *discoveryPatch
+    - *kubeletPatch
+    - *kubePrismPatch
+    - *nameserverPatch
+    - *ntpPatch
+    - *sysctlPatch
+    - *openEbsPatch
