@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  data: p-pve-s2-01=192.168.51.211:6789
+  mapping: '{}'
+  maxMonId: "2"
+kind: ConfigMap
+metadata:
+  name: rook-ceph-mon-endpoints
+  namespace: rook-ceph
