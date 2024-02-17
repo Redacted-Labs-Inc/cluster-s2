@@ -34,18 +34,17 @@ spec:
     service:
       main:
         type: NodePort
-        externalTrafficPolicy: Cluster
         ports:
           http:
             enabled: false
           smtp:
             enabled: true
             protocol: TCP
-            port: 1025
+            port: 25
           imap:
             enabled: true
             protocol: TCP
-            port: 1143
+            port: 143
     probes:
       liveness:
         enabled: false
