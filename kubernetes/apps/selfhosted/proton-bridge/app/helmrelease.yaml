@@ -45,6 +45,13 @@ spec:
             enabled: true
             protocol: TCP
             port: 143
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
     persistence:
       config:
         enabled: true
