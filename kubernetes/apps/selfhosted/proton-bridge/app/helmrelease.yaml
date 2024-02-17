@@ -40,7 +40,11 @@ spec:
           smtp:
             enabled: true
             protocol: TCP
-            port: 25
+            port: 1025
+          imap:
+            enabled: true
+            protocol: TCP
+            port: 1143
     persistence:
       config:
         enabled: true
