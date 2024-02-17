@@ -37,14 +37,14 @@ spec:
         ports:
           http:
             enabled: false
-          imap:
-            enabled: true
-            protocol: TCP
-            port: 1143
           smtp:
             enabled: true
             protocol: TCP
-            port: 1025
+            port: 25
+          imap:
+            enabled: true
+            protocol: TCP
+            port: 143
     persistence:
       config:
         enabled: true
