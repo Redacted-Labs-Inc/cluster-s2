@@ -41,10 +41,12 @@ spec:
             enabled: true
             protocol: TCP
             port: 25
+            targetPort: 1025
           imap:
             enabled: true
             protocol: TCP
             port: 143
+            targetPort: 1143
     probes:
       liveness:
         enabled: false
