@@ -44,5 +44,4 @@ spec:
       config:
         enabled: true
         mountPath: /root
-        storageClass: "freenas-iscsi-csi"
         size: 5Gi
