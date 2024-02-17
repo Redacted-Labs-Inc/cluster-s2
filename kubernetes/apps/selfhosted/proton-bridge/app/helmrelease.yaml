@@ -33,6 +33,7 @@ spec:
       TZ: America/New_York
     service:
       main:
+        type: LoadBalancer
         ports:
           http:
             enabled: false
