@@ -12,6 +12,7 @@ resources:
   - ./metrics-server.yaml
   - ./openebs.yaml
   - ./postfinance.yaml
+  - ./prometheus-community.yaml
   - ./rook-release.yaml
   - ./stakater.yaml
   - ./xenitab.yaml
