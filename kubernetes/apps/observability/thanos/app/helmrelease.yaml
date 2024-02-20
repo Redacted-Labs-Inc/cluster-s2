@@ -93,7 +93,6 @@ spec:
       dnsDiscovery:
         sidecarsService: kube-prometheus-stack-thanos-discovery
         sidecarsNamespace: observability
-      stores: ["thanos.turbo.ac:10901"]
       networkPolicy:
         enabled: false
     bucketweb:
