@@ -1,0 +1,98 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/postgres-operator.crunchydata.com/postgrescluster_v1beta1.json
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: &name postgres
+spec:
+  postgresVersion: 16
+  instances:
+    - name: postgres
+      metadata:
+        labels:
+          app.kubernetes.io/name: crunchy-postgres
+      replicas: &replica 3
+      dataVolumeClaimSpec:
+        storageClassName: ceph-rbd
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/data: postgres
+  users:
+    - name: postgres
+      databases: []
+      options: SUPERUSER
+      password: &password
+        type: AlphaNumeric
+  backups:
+    pgbackrest:
+      configuration: &backupConfig
+        - secret:
+            name: crunchy-pgo-secret
+      global: &backupFlag
+        archive-timeout: "60"
+        compress-type: lz4
+        compress-level: "9"
+        delta: "y"
+        repo1-bundle: "y"
+        repo1-block: "y"
+        repo1-path: /pgdata/crunchy-pgo/repo1
+        repo1-s3-uri-style: path
+        repo1-retention-full-type: time
+        repo1-retention-full: "14"
+        repo1-retention-diff: "30"
+      manual:
+        repoName: repo1
+        options: ["--type=full"]
+      metadata:
+        labels:
+          app.kubernetes.io/name: crunchy-postgres-backup
+      repos:
+        - # Minio
+          name: repo1
+          s3: &minio
+            bucket: crunchy-pgo
+            endpoint: 192.168.51.191
+            region: us-east-1
+          schedules:
+            full: "0 1 * * 0"           # Sunday at 1am
+            differential: "0 1 * * 1-6" # Mon-Sat at 1am
+            incremental: "0 2-23 * * *" # Every hour except 1am
+  dataSource:
+    pgbackrest:
+      stanza: db
+      configuration: *backupConfig
+      global: *backupFlag
+      repo:
+        name: repo1
+        s3: *minio
+  proxy:
+    pgBouncer:
+      service:
+        metadata:
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: cpgo.${SECRET_DOMAIN}
+        type: LoadBalancer
+      port: 5432
+      replicas: *replica
+      config:
+        global:
+          # Grafana requires session
+          # Ref: https://github.com/grafana/grafana/issues/74260
+          pool_mode: transaction
+          client_tls_sslmode: prefer
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/cluster: *name
+              postgres-operator.crunchydata.com/role: pgbouncer
