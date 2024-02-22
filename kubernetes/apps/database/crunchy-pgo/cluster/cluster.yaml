@@ -27,7 +27,7 @@ spec:
               postgres-operator.crunchydata.com/data: postgres
   users:
     - name: postgres
-      databases: []
+      databases: ["test"]
       options: SUPERUSER
       password: &password
         type: AlphaNumeric
