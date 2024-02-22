@@ -31,48 +31,48 @@ spec:
       options: SUPERUSER
       password: &password
         type: AlphaNumeric
-  backups:
-    pgbackrest:
-      configuration: &backupConfig
-        - secret:
-            name: crunchy-pgo-secret
-      global: &backupFlag
-        archive-timeout: "60"
-        compress-type: lz4
-        compress-level: "9"
-        delta: "y"
-        repo1-bundle: "y"
-        repo1-block: "y"
-        repo1-path: /pgdata/crunchy-pgo/repo1
-        repo1-s3-uri-style: path
-        repo1-retention-full-type: time
-        repo1-retention-full: "14"
-        repo1-retention-diff: "30"
-      manual:
-        repoName: repo1
-        options: ["--type=full"]
-      metadata:
-        labels:
-          app.kubernetes.io/name: crunchy-postgres-backup
-      repos:
-        - # Minio
-          name: repo1
-          s3: &minio
-            bucket: crunchy-pgo
-            endpoint: 192.168.51.191
-            region: us-east-1
-          schedules:
-            full: "0 1 * * 0"           # Sunday at 1am
-            differential: "0 1 * * 1-6" # Mon-Sat at 1am
-            incremental: "0 2-23 * * *" # Every hour except 1am
-  dataSource:
-    pgbackrest:
-      stanza: db
-      configuration: *backupConfig
-      global: *backupFlag
-      repo:
-        name: repo1
-        s3: *minio
+  # backups:
+  #   pgbackrest:
+  #     configuration: &backupConfig
+  #       - secret:
+  #           name: crunchy-pgo-secret
+  #     global: &backupFlag
+  #       archive-timeout: "60"
+  #       compress-type: lz4
+  #       compress-level: "9"
+  #       delta: "y"
+  #       repo1-bundle: "y"
+  #       repo1-block: "y"
+  #       repo1-path: /pgdata/crunchy-pgo/repo1
+  #       repo1-s3-uri-style: path
+  #       repo1-retention-full-type: time
+  #       repo1-retention-full: "14"
+  #       repo1-retention-diff: "30"
+  #     manual:
+  #       repoName: repo1
+  #       options: ["--type=full"]
+  #     metadata:
+  #       labels:
+  #         app.kubernetes.io/name: crunchy-postgres-backup
+  #     repos:
+  #       - # Minio
+  #         name: repo1
+  #         s3: &minio
+  #           bucket: crunchy-pgo
+  #           endpoint: 192.168.51.191
+  #           region: us-east-1
+  #         schedules:
+  #           full: "0 1 * * 0"           # Sunday at 1am
+  #           differential: "0 1 * * 1-6" # Mon-Sat at 1am
+  #           incremental: "0 2-23 * * *" # Every hour except 1am
+  # dataSource:
+  #   pgbackrest:
+  #     stanza: db
+  #     configuration: *backupConfig
+  #     global: *backupFlag
+  #     repo:
+  #       name: repo1
+  #       s3: *minio
   proxy:
     pgBouncer:
       service:
