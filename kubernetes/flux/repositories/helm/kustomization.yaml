@@ -17,6 +17,7 @@ resources:
   - ./openebs.yaml
   - ./postfinance.yaml
   - ./prometheus-community.yaml
+  - ./qonstrukt.yaml
   - ./rook-release.yaml
   - ./stakater.yaml
   - ./xenitab.yaml
