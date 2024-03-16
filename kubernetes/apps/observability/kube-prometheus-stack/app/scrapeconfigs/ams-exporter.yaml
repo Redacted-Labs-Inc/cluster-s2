@@ -1,0 +1,10 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: ams-exporter
+spec:
+  staticConfigs:
+    - targets:
+        - ams.private.cloud:9091
+  metricsPath: /metrics
