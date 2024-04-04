@@ -72,7 +72,7 @@ spec:
         accessMode: ReadWriteOnce
         type: persistentVolumeClaim
         enabled: true
-        size: 5Gi
+        size: 50Gi
         storageClass: ceph-rbd
         advancedMounts:
           jellyfin:
