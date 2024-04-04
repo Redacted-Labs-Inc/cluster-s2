@@ -59,15 +59,6 @@ spec:
                 cpu: 100m
               limits:
                 memory: 16Gi
-          nodeSelector:
-            intel.feature.node.kubernetes.io/gpu: "true"
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [44, 10000]
     service:
       app:
         controller: jellyfin
