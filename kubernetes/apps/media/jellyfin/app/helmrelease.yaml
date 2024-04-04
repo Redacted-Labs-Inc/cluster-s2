@@ -88,7 +88,7 @@ spec:
           qbittorrent:
             app:
               - path: /config
-      config:
+      cache:
         accessMode: ReadWriteOnce
         type: persistentVolumeClaim
         enabled: true
