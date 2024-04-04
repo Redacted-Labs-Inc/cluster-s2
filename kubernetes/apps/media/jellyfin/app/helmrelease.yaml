@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: jellyfin/jellyfin
-              tag: 2024040105
+              tag: "2024040105"
             env:
               TZ: America/New_York
             probes:
@@ -43,7 +43,6 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: /identity
                     port: 8096
                   initialDelaySeconds: 0
                   periodSeconds: 10
