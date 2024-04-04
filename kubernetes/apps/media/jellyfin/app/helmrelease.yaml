@@ -76,7 +76,7 @@ spec:
         size: 5Gi
         storageClass: ceph-rbd
         advancedMounts:
-          qbittorrent:
+          jellyfin:
             app:
               - path: /config
       cache:
@@ -86,7 +86,7 @@ spec:
         size: 10Gi
         storageClass: ceph-rbd
         advancedMounts:
-          qbittorrent:
+          jellyfin:
             app:
               - path: /cache
       media:
