@@ -170,7 +170,7 @@ controlPlane:
       machine:
         network:
           nameservers:
-            - 192.168.51.1
+            - 10.255.253.1
 
     # Configure NTP
     - &ntpPatch |-
