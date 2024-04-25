@@ -55,14 +55,14 @@ spec:
             port: 8080
           db:
             port: 5432
-    persistence:
-      config:
-        accessMode: ReadWriteOnce
-        type: persistentVolumeClaim
-        enabled: true
-        size: 10Gi
-        storageClass: ceph-rbd
-        advancedMounts:
-          postgresql:
-            db:
-              - path: /var/lib/postgresql/data
+    # persistence:
+    #   config:
+    #     accessMode: ReadWriteOnce
+    #     type: persistentVolumeClaim
+    #     enabled: true
+    #     size: 10Gi
+    #     storageClass: ceph-rbd
+    #     advancedMounts:
+    #       postgresql:
+    #         db:
+    #           - path: /var/lib/postgresql/data
