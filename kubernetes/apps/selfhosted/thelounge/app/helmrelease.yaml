@@ -70,6 +70,12 @@ spec:
 
     persistence:
       config:
-        existingClaim: thelounge-config
-        globalMounts:
-          - path: /var/opt/thelounge
+        accessMode: ReadWriteOnce
+        type: persistentVolumeClaim
+        enabled: true
+        size: 10Gi
+        storageClass: ceph-rbd
+        advancedMounts:
+          thelounge:
+            app:
+              - path: /var/opt/thelounge
