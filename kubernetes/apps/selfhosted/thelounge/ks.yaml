@@ -5,11 +5,11 @@ metadata:
   name: &app thelounge
   namespace: flux-system
 spec:
-  targetNamespace: media
+  targetNamespace: selfhosted
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/media/thelounge/app
+  path: ./kubernetes/apps/selfhosted/thelounge/app
   prune: true
   sourceRef:
     kind: GitRepository
