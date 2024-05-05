@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./proton-bridge/ks.yaml
   - ./test/ks.yaml
+  - ./thelounge/ks.yaml
