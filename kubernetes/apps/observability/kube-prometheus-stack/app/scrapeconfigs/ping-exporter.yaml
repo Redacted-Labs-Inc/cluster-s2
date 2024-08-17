@@ -1,0 +1,10 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: ping-exporter
+spec:
+  staticConfigs:
+    - targets:
+        - ping-exporter:9427
+  metricsPath: /metrics
