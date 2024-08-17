@@ -5,4 +5,5 @@ resources:
   - ./ams-exporter.yaml
   - ./graphite-exporter.yaml
   - ./node-exporter.yaml
+  - ./ping-exporter.yaml
   - ./zfs-exporter.yaml
