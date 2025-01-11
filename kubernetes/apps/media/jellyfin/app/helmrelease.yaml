@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: jellyfin/jellyfin
-              tag: "2024040105"
+              tag: "2025010605"
             env:
               TZ: America/New_York
             probes:
